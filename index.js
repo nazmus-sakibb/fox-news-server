@@ -7,6 +7,7 @@ app.use(cors());
 
 
 const categories = require('./data/categories.json');
+const news = require('./data/news.json');
 
 
 app.get('/', (req, res) => {
@@ -18,7 +19,11 @@ app.get('/news-categories', (req, res) => {
     res.send(categories);
 })
 
-
+app.get('/news/:id', (req, res) => {
+    const id = req.params.id;
+    const selectedNews = news.find(n => n._id === id);
+    res.send(selectedNews);
+})
 
 
 
